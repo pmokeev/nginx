@@ -1,5 +1,7 @@
 name: Deploy to staging
 
+on: [push]
+
 jobs:
   deploy_to_staging:
     runs-on: ubuntu-latest
