@@ -17,8 +17,9 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
-        source: deploy/vps/*
+        source: "deploy/vps/*"
         target: ~/vps/
+        strip_components: 1
 
     - name: Running nginx server
       uses: appleboy/ssh-action@v0.1.10
