@@ -19,7 +19,7 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         source: "deploy/vps/*"
         target: ~/vps/
-        strip_components: 1
+        strip_components: 2
 
     - name: Running nginx server
       uses: appleboy/ssh-action@v0.1.10
