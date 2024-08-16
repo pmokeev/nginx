@@ -28,5 +28,5 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
-        script: | 
-          echo "Hello World!"
+        script: |
+          docker-compose -f vps/docker-compose.yaml up -d
