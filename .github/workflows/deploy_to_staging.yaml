@@ -33,4 +33,7 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         envs: DOMAIN_NAME,EMAIL
         script: |
+          for filename in `find vps -name "*.conf" -type f`; do
+            envsubst "$DOMAIN_NAME" < $filename > $filename
+          done
           docker compose -f vps/docker-compose-initiate.yaml up -d
