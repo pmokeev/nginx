@@ -34,5 +34,3 @@ jobs:
         envs: DOMAIN_NAME,EMAIL
         script: |
           docker compose -f vps/docker-compose-initiate.yaml up -d
-          docker compose -f vps/docker-compose-initiate.yaml down
-          docker compose -f vps/docker-compose.yaml up -d
