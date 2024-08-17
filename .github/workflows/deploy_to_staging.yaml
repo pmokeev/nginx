@@ -24,7 +24,7 @@ jobs:
     - name: Running nginx server
       uses: appleboy/ssh-action@v1.0.3
       env:
-        DOMAIN_NAME: ${{ github.repository }}
+        DOMAIN_NAME: ${{ vars.DOMAIN_NAME }}
       with:
         host: ${{ secrets.SSH_HOSTNAME }}
         username: ${{ secrets.SSH_USERNAME }}
