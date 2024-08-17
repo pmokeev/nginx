@@ -34,6 +34,8 @@ jobs:
         envs: DOMAIN_NAME,EMAIL
         script: |
           for filename in `find vps -name "*.conf" -type f`; do
-            envsubst "$DOMAIN_NAME" < $filename > $filename
+            cp ${filename} ${filename}.tmp;
+            envsubst '${DOMAIN_NAME}' < ${filename}.tmp > ${filename};
+            rm ${filename}.tmp
           done
           docker compose -f vps/docker-compose-initiate.yaml up -d
