@@ -4,9 +4,8 @@ services:
   nginx:
     container_name: nginx
     image: nginx:latest
-    command: /bin/bash -c "envsubst ${DOMAIN_NAME} < /etc/nginx/nginx.conf > /etc/nginx/nginx.conf && nginx -g 'daemon off;'" 
-    depends_on:
-      - certbot
+    environment:
+      - DOMAIN_NAME
     ports:
       - 80:80
       - 443:443
@@ -17,6 +16,8 @@ services:
   certbot:
     container_name: certbot
     image: certbot/certbot:latest
+    depends_on:
+      - nginx
     command: |
           certonly --reinstall --webroot --webroot-path=/var/www/certbot
           --email ${EMAIL} --agree-tos --no-eff-email
