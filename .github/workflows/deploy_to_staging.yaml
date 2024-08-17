@@ -32,4 +32,5 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
         script: |
+          echo $DOMAIN_NAME
           docker compose -f vps/docker-compose.yaml up -d
