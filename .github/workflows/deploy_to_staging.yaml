@@ -22,14 +22,14 @@ jobs:
         strip_components: 2
 
     - name: Running nginx server
-      uses: appleboy/ssh-action@v0.1.10
+      uses: appleboy/ssh-action@v1.0.3
       env:
-        DOMAIN_NAME: ${{ env.DOMAIN_NAME }}
+        FOO: "BAR"
       with:
         host: ${{ secrets.SSH_HOSTNAME }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
-        envs: DOMAIN_NAME
+        envs: FOO
         script: |
-          echo "$DOMAIN_NAME"
+          echo "I am $FOO"
