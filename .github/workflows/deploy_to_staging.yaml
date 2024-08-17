@@ -24,8 +24,8 @@ jobs:
     - name: Running nginx server
       uses: appleboy/ssh-action@v0.1.10
       env:
-        DOMAIN_NAME: ${{ env.DOMAIN_NAME }}
-        EMAIL: ${{ env.EMAIL }}
+        DOMAIN_NAME: ${{ vars.DOMAIN_NAME }}
+        EMAIL: ${{ vars.EMAIL }}
       with:
         host: ${{ secrets.SSH_HOSTNAME }}
         username: ${{ secrets.SSH_USERNAME }}
@@ -33,4 +33,3 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         script: |
           echo $DOMAIN_NAME
-          docker compose -f vps/docker-compose.yaml up -d
