@@ -25,6 +25,7 @@ jobs:
       uses: appleboy/ssh-action@v1.0.3
       env:
         DOMAIN_NAME: ${{ vars.DOMAIN_NAME }}
+        EMAIL: ${{ vars.EMAIL }}
       with:
         host: ${{ secrets.SSH_HOSTNAME }}
         username: ${{ secrets.SSH_USERNAME }}
@@ -32,4 +33,4 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         envs: DOMAIN_NAME
         script: |
-          echo "I am $DOMAIN_NAME"
+          docker compose -f vps/docker-compose.yaml up -d
