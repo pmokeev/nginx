@@ -32,4 +32,4 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
         script: |
-          echo $DOMAIN_NAME
+          echo ${{ env.DOMAIN_NAME }}
