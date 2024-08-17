@@ -24,12 +24,12 @@ jobs:
     - name: Running nginx server
       uses: appleboy/ssh-action@v1.0.3
       env:
-        FOO: "BAR"
+        DOMAIN_NAME: ${{ envs.DOMAIN_NAME }}
       with:
         host: ${{ secrets.SSH_HOSTNAME }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
-        envs: FOO
+        envs: DOMAIN_NAME
         script: |
-          echo "I am $FOO"
+          echo "I am $DOMAIN_NAME"
