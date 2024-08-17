@@ -2,8 +2,25 @@ version: '3'
 
 services:
   nginx:
+    container_name: nginx
     image: nginx:latest
+    command: /bin/bash -c "envsubst ${DOMAIN_NAME} < /etc/nginx/nginx.conf > /etc/nginx/nginx.conf && nginx -g 'daemon off;'" 
+    depends_on:
+      - certbot
     ports:
       - 80:80
+      - 443:443
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./certbot/conf/:/etc/letsencrypt:ro
+      - ./certbot/www/:/var/www/certbot/:ro
+  certbot:
+    container_name: certbot
+    image: certbot/certbot:latest
+    command: |
+          certonly --reinstall --webroot --webroot-path=/var/www/certbot
+          --email ${EMAIL} --agree-tos --no-eff-email
+          -d ${DOMAIN_NAME}
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
+      - ./certbot/conf/:/etc/letsencrypt/:rw
